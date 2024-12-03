@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Apurbo!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebcd;
+            text-align: center;
+            color: #333;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        h1 {
+            color: #ff6347;
+            animation: fadeIn 2s ease-in-out;
+            cursor: pointer;
+            font-size: 4rem;
+            margin-top: 20px;
+        }
+        .cake-box {
+            display: inline-block;
+            background-color: #ff69b4;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+            position: relative;
+            width: 80%;
+            max-width: 350px;
+        }
+        .cake {
+            width: 100%;
+            height: 250px;
+            background-image: url('https://www.example.com/birthday-cake.png'); /* Replace with your cake image */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            animation: bounceCake 2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes bounceCake {
+            0% { top: -150px; }
+            50% { top: 20px; }
+            100% { top: 0; }
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #6a5acd;
+            font-weight: bold;
+            animation: popUp 3s ease-in-out forwards;
+            cursor: pointer;
+        }
+        @keyframes popUp {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInPopup 2s ease-in-out forwards;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+            animation: popIn 1s ease-out;
+        }
+        @keyframes fadeInPopup {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        button {
+            background-color: #ff6347;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e5533f;
+        }
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="happy-birthday">Happy 14th Birthday, Apurbo!</h1>
+    <div class="cake-box">
+        <div class="cake"></div>
+    </div>
+    <p class="message" onclick="shakeMessage()">Wishing you an amazing day filled with love, joy, and everything you like!</p>
+
+    <!-- Pop-up -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Surprise!</h2>
+            <p>You're now 14 years old! 🎉🎂</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Confetti -->
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        // Show the pop-up after 2 seconds
+        setTimeout(function() {
+            document.getElementById('popup').style.display = 'flex';
+        }, 2000);
+
+        // Close the pop-up
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Fun shake effect on message click
+        function shakeMessage() {
+            const message = document.querySelector('.message');
+            message.style.animation = 'shake 0.5s ease-out';
+            setTimeout(() => {
+                message.style.animation = '';
+            }, 500);
+        }
+
+        // Confetti Animation
+        function startConfetti() {
+            const confetti = document.getElementById('confetti');
+            confetti.style.display = 'block';
+            for (let i = 0; i < 200; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.position = 'absolute';
+                confettiPiece.style.top = Math.random() * window.innerHeight + 'px';
+                confettiPiece.style.left = Math.random() * window.innerWidth + 'px';
+                confettiPiece.style.width = '10px';
+                confettiPiece.style.height = '10px';
+                confettiPiece.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+                confettiPiece.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear infinite';
+                confetti.appendChild(confettiPiece);
+            }
+        }
+
+        // Trigger confetti
+        window.onload = function() {
+            startConfetti();
+        }
+
+        // Confetti falling animation
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        // Message shake animation
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+    </script>
+</body>
+</html>
